@@ -1,0 +1,18 @@
+-- https://school.programmers.co.kr/learn/courses/30/lessons/131537#qna
+SELECT 
+    DATE_FORMAT(onl.SALES_DATE,'%Y-%m-%d') as SALES_DATE,
+    onl.PRODUCT_ID,
+    onl.USER_ID,
+    onl.SALES_AMOUNT
+FROM ONLINE_SALE onl
+WHERE onl.SALES_DATE LIKE '2022-03%'
+UNION 
+SELECT 
+    DATE_FORMAT(off.SALES_DATE,'%Y-%m-%d') as SALES_DATE,
+    off.PRODUCT_ID,
+    NULL ,
+    off.SALES_AMOUNT
+FROM OFFLINE_SALE off
+WHERE off.SALES_DATE LIKE '2022-03%'
+ORDER BY SALES_DATE , PRODUCT_ID, USER_ID
+;
